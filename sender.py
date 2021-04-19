@@ -14,9 +14,9 @@ def format_mail_body(mailing):
               /* -------------------------------------
                   GLOBAL RESETS
               ------------------------------------- */
-
+              
               /*All the styling goes here*/
-
+              
               img {
                 border: none;
                 -ms-interpolation-mode: bicubic;
@@ -56,7 +56,7 @@ def format_mail_body(mailing):
                 width: 100%; 
               }
 
-              /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or      something */
+              /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
               .container {
                 display: block;
                 margin: 0 auto !important;
@@ -121,7 +121,7 @@ def format_mail_body(mailing):
                 font-weight: 400;
                 line-height: 1.4;
                 margin: 0;
-                margin-bottom: 30px; 
+                margin-bottom: 10px; 
               }
 
               h1 {
@@ -147,6 +147,7 @@ def format_mail_body(mailing):
                   margin-left: 5px; 
               }
 
+
               /* -------------------------------------
                   BUTTONS
               ------------------------------------- */
@@ -163,6 +164,7 @@ def format_mail_body(mailing):
                   border-radius: 5px;
                   text-align: center; 
               }
+
 
               .btn-primary table td {
                 background-color: #3498db; 
@@ -307,11 +309,11 @@ def format_mail_body(mailing):
                   background-color: #34495e !important; 
                 }
               }
-            
+
             </style>
           </head>
           <body class="">
-            <span class="preheader">mail by skeptical knowledge</span>
+            <span class="preheader">Lista najlepszych filmów w serwisie Netflix na podstawie oceny portalu filmweb.pl</span>
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
               <tr>
                 <td>&nbsp;</td>
@@ -328,14 +330,21 @@ def format_mail_body(mailing):
                             <tr>
                               <td>
                                 <h1>Filmy miesiąca na Netflix</h1>
-                                <p>Zestawienie najlepszych filmów na Netflixie wedug portalu filmweb.pl</p>
+                                <p>Zestawienie najlepszych filmów na Netflixie wedug portalu <a href="https://www.filmweb.pl/netflix">filmweb.pl</a></p>
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                   <tbody>
                                     <tr>
                                       <td align="left">
     """
     for movie in mailing:
-        html += '<p><h2><b>'+movie['title']+'</b></h2><img src="'+movie['poster']+'"><p><b>Opis: </b>'+movie['description']+'</p><p><b>Ocena:</b> '+movie['rate']+'</p><p><b>Link: </b><a href="'+movie['link']+'">'+movie['title']+' w filmweb.pl</a>'+'</p>'
+        html += '<h2><b>'+movie['title']+'</b></h2>\n'
+        html += '<img src="'+movie['poster']+'"><br>\n'
+        html += '<b>Opis: </b>'+movie['description']+'<br>\n'
+        html += '<b>Ocena:</b> '+movie['rate']+'<br>\n'
+        html += '<b>Link: </b><a href="'+movie['link']+'">'+movie['title']+' w filmweb.pl</a><br>\n'
+        if movie['link'] != mailing[len(mailing)-1]['link']:
+          html += '<hr>'
+              
     html += """
                                       </td>
                                 </tr>
@@ -371,6 +380,8 @@ def format_mail_body(mailing):
       </body>
     </html>
     """
+    with open("html.txt", 'w') as file:
+      file.write(html)
     return html
 
 def send_mails(sender,receivers,mailing):
