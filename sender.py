@@ -329,8 +329,8 @@ def format_mail_body(mailing):
                           <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                               <td>
-                                <h1>Filmy miesiąca na Netflix</h1>
-                                <p>Zestawienie najlepszych filmów na Netflixie wedug portalu <a href="https://www.filmweb.pl/netflix">filmweb.pl</a></p>
+                                <h1>Filmy dnia na Netflix</h1>
+                                <p>Dzisiejsze zestawienie najlepszych filmów na Netflixie według portalu <a href="https://www.filmweb.pl/netflix">filmweb.pl</a></p>
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                   <tbody>
                                     <tr>
@@ -392,7 +392,7 @@ def send_mails(sender,receivers,mailing):
     #     appended_receivers += receiver
     #     appended_receivers += ","
     # message['To'] = appended_receivers
-    message['Subject'] = "[Netflix] Filmy miesiąca według filmweb"
+    message['Subject'] = "[Netflix] Filmy dnia według filmweb.pl"
     message.attach(MIMEText(format_mail_body(mailing),'html'))
     try:
         print("sending")
