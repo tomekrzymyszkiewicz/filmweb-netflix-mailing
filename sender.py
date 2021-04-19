@@ -387,11 +387,6 @@ def format_mail_body(mailing):
 def send_mails(sender,receivers,mailing):
     message = MIMEMultipart()
     message['From'] = sender['mail']
-    appended_receivers = ""
-    # for receiver in receivers:
-    #     appended_receivers += receiver
-    #     appended_receivers += ","
-    # message['To'] = appended_receivers
     message['Subject'] = "[Netflix] Filmy dnia według filmweb.pl"
     message.attach(MIMEText(format_mail_body(mailing),'html'))
     try:

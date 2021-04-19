@@ -1,7 +1,6 @@
 from typing import Text
 from bs4 import BeautifulSoup
 import requests
-import time
 
 def get_films_of_month():
     response = requests.get("https://www.filmweb.pl/netflix")
