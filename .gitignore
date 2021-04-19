@@ -164,7 +164,7 @@ Thumbs.db
 
 # profiling data
 .prof
-
+.ini
 
 ### vscode ###
 .vscode/*
