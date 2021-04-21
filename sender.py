@@ -380,8 +380,6 @@ def format_mail_body(mailing):
       </body>
     </html>
     """
-    with open("html.txt", 'w') as file:
-      file.write(html)
     return html
 
 def send_mails(sender,receivers,mailing):
